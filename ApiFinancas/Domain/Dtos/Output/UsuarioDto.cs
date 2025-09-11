@@ -8,6 +8,7 @@ public class UsuarioDto
     public string? NomeAcesso { get; set; }
     public string? Email { get; set; }
     public DateTime? UltimoAcesso { get; set; }
+
     public static implicit operator UsuarioDto(Usuario usuario) => new()
     {
         Id = usuario.Id,
@@ -15,4 +16,14 @@ public class UsuarioDto
         Email = usuario.Email,
         UltimoAcesso = usuario.UltimoAcesso
     };
+
+    public UsuarioDto() { }
+
+    public UsuarioDto(Usuario usuario)
+    {
+        Id = usuario.Id;
+        NomeAcesso = usuario.NomeAcesso;
+        Email = usuario.Email;
+        UltimoAcesso = usuario.UltimoAcesso;
+    }
 }

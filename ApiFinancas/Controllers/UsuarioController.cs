@@ -71,13 +71,31 @@ public class UsuarioController(IUsuarioService service) : ControllerBase
 
     [HttpPost("autentica")]
     [AllowAnonymous]
-    public async Task<IActionResult> Autenticar([FromQuery] string email, [FromQuery] string senha)
+    public async Task<IActionResult> AutenticarAsync([FromQuery] string email, [FromQuery] string senha)
     {
         try
         {
-            return Ok(await _service.Autenticar(email, senha));
+            return Ok(await _service.AutenticarAsync(email, senha));
         }
         catch (ArgumentException ex)
+        {
+            return NotFound(new ResponseErrorDto(ex));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorDto(ex));
+        }
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> ObterTodosUsuariosAsync()
+    {
+        try
+        {
+            return Ok(await _service.ObterUsuariosAsync());
+        }
+        catch (InvalidOperationException ex)
         {
             return NotFound(new ResponseErrorDto(ex));
         }

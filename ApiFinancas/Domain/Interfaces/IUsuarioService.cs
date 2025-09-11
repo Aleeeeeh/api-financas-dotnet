@@ -8,5 +8,6 @@ public interface IUsuarioService
     Task<UsuarioDto> CriarUsuarioAsync(PostUsuarioDto dto);
     Task AtualizarUsuarioAsync(int id, PutUsuarioDto dto);
     Task DeletarUsuarioAsync(int id);
-    Task<TokenUsuarioDto> Autenticar(string email, string senha);
+    Task<TokenUsuarioDto> AutenticarAsync(string email, string senha);
+    Task<IEnumerable<UsuarioDto>> ObterUsuariosAsync();
 }

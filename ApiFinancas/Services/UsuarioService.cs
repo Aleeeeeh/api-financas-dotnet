@@ -22,7 +22,7 @@ public class UsuarioService(RepositoryBase<Usuario> repository, JwtTokenGenerato
         await _repository.UpdateAsync(dto.Update(usuario));
     }
 
-    public async Task<TokenUsuarioDto> Autenticar(string email, string senha)
+    public async Task<TokenUsuarioDto> AutenticarAsync(string email, string senha)
     {
         Usuario usuario = await ObterUsuarioPorEmail(email);
 
@@ -78,5 +78,15 @@ public class UsuarioService(RepositoryBase<Usuario> repository, JwtTokenGenerato
     public async Task DeletarUsuarioAsync(int id)
     {
         await _repository.RemoveAsync(id);
+    }
+
+    public async Task<IEnumerable<UsuarioDto>> ObterUsuariosAsync()
+    {
+        IEnumerable<Usuario> listaUsuarios = await _repository.GetAllAsync();
+
+        if (listaUsuarios.Count() == 0)
+            throw new InvalidOperationException("Nenhum usuário encontrado.");
+
+        return listaUsuarios.Select((u => new UsuarioDto(u))).ToList();
     }
 }
