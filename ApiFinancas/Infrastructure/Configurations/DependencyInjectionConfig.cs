@@ -16,6 +16,7 @@ public static class DependencyInjectionConfig
         service.AddScoped(typeof(RepositoryBase<>), typeof(RepositoryBase<>));
         service.AddScoped<JwtTokenGenerator>();
         service.AddScoped<IUsuarioService, UsuarioService>();
+        service.AddScoped<ILancamentoService, LancamentoService>();
 
         service.AddControllers();
         service.AddEndpointsApiExplorer();

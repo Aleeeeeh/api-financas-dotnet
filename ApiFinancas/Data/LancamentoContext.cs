@@ -18,7 +18,7 @@ public class LancamentoContext : IEntityTypeConfiguration<Lancamento>
         builder.Property(l => l.Ano)
             .IsRequired();
 
-        builder.Property(l => l.UsuarioId)
+        builder.Property(l => l.DataLancamento)
             .IsRequired();
 
         builder.Property(l => l.Valor)
