@@ -18,6 +18,19 @@ public static class DependencyInjectionConfig
         service.AddScoped<IUsuarioService, UsuarioService>();
         service.AddScoped<ILancamentoService, LancamentoService>();
 
+
+        service.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigins",
+                policy =>
+                {
+                    policy.WithOrigins("http://localhost:5173", "url front end hospedado")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials();
+                });
+        });
+
         service.AddControllers();
         service.AddEndpointsApiExplorer();
         service.AddSwaggerConfigurarion();

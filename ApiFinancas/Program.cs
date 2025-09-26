@@ -19,6 +19,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthConfiguration();
 
+app.UseCors("AllowSpecificOrigins");
+
 app.MapControllers();
 
 app.Run();
