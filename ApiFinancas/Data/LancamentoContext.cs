@@ -18,9 +18,6 @@ public class LancamentoContext : IEntityTypeConfiguration<Lancamento>
         builder.Property(l => l.Ano)
             .IsRequired();
 
-        builder.Property(l => l.DataLancamento)
-            .IsRequired();
-
         builder.Property(l => l.Valor)
             .HasColumnType("decimal(7,2)")
             .IsRequired();

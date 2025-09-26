@@ -10,7 +10,6 @@ public class PostLancamentoDto
     public int Ano { get; set; }
     public decimal Valor { get; set; }
     public TipoLancamento TipoLancamento { get; set; }
-    public DateTime DataLancamento { get; set; }
 
     public static implicit operator Lancamento(PostLancamentoDto dto) =>
         new()
@@ -19,7 +18,6 @@ public class PostLancamentoDto
             Mes = dto.Mes,
             Ano = dto.Ano,
             Valor = dto.Valor,
-            TipoLancamento = dto.TipoLancamento,
-            DataLancamento = dto.DataLancamento
+            TipoLancamento = dto.TipoLancamento
         };
 }

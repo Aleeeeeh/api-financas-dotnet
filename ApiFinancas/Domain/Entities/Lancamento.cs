@@ -9,7 +9,6 @@ public class Lancamento : BaseModel
     public Mes Mes { get; set; }
     public int Ano { get; set; }
     public decimal Valor { get; set; }
-    public DateTime DataLancamento { get; set; }
     public TipoLancamento TipoLancamento { get; set; }
     public StatusLancamento StatusLancamento { get; set; } = StatusLancamento.PENDENTE;
 }

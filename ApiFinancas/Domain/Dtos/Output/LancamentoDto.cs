@@ -11,7 +11,6 @@ public class LancamentoDto
     public int Ano { get; set; }
     public int UsuarioId { get; set; }
     public decimal Valor { get; set; }
-    public DateTime Data { get; set; }
     public TipoLancamento TipoLancamento { get; set; }
     public StatusLancamento StatusLancamento { get; set; }
 
@@ -24,7 +23,6 @@ public class LancamentoDto
             Ano = lancamento.Ano,
             UsuarioId = lancamento.UsuarioInclusaoId,
             Valor = lancamento.Valor,
-            Data = lancamento.DataLancamento,
             TipoLancamento = lancamento.TipoLancamento,
             StatusLancamento = lancamento.StatusLancamento
         };
@@ -39,7 +37,6 @@ public class LancamentoDto
         Ano = lancamento.Ano;
         UsuarioId = lancamento.UsuarioInclusaoId;
         Valor = lancamento.Valor;
-        Data = lancamento.DataLancamento;
         TipoLancamento = lancamento.TipoLancamento;
         StatusLancamento = lancamento.StatusLancamento;
     }
