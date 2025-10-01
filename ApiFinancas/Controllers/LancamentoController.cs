@@ -1,5 +1,6 @@
 ﻿using ApiFaturamento.Domain.Dtos.Shared;
 using ApiFinancas.Domain.Dtos.Input;
+using ApiFinancas.Domain.Enums;
 using ApiFinancas.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,8 @@ public class LancamentoController(ILancamentoService service) : ControllerBase
         }
     }
 
-    [HttpPut]
-    public async Task<IActionResult> AtualizarLancamentoAsync([FromQuery] int id, [FromBody] PutLancamentoDto dto)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> AtualizarLancamentoAsync([FromRoute] int id, [FromBody] PutLancamentoDto dto)
     {
         try
         {
@@ -122,7 +123,7 @@ public class LancamentoController(ILancamentoService service) : ControllerBase
     {
         try
         {
-            return Ok(await _service.ObterLancamentosPorFiltroAsync(descricao, mes, ano, (Domain.Enums.TipoLancamento)tipoLancamento, usuarioId));
+            return Ok(await _service.ObterLancamentosPorFiltroAsync(descricao, mes, ano, (TipoLancamento)tipoLancamento, usuarioId));
         }
         catch (InvalidOperationException ex)
         {
