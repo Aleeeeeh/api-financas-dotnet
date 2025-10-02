@@ -8,6 +8,8 @@ public class LancamentoContext : IEntityTypeConfiguration<Lancamento>
 {
     public void Configure(EntityTypeBuilder<Lancamento> builder)
     {
+        builder.HasQueryFilter(l => !l.EstaExcluido);
+
         builder.Property(l => l.Descricao)
             .HasMaxLength(300)
             .IsRequired();

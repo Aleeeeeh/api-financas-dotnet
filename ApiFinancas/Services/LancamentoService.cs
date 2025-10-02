@@ -133,4 +133,30 @@ public class LancamentoService(RepositoryBase<Lancamento> repository) : ILancame
         if (anoInicial > anoFinal)
             throw new InvalidOperationException("Ano inicial não pode ser maior que o ano final.");
     }
+
+    public async Task<decimal> ObterSaldoPorUsuario(int usuarioId)
+    {
+        decimal totalReceitas = await ObterTotalReceitas(usuarioId);
+        decimal totalDespesas = await ObterTotalDespesas(usuarioId);
+
+        return totalReceitas - totalDespesas;
+    }
+
+    private async Task<decimal> ObterTotalReceitas(int usuarioId)
+    {
+        return await _repository.Query()
+            .Where(l => l.TipoLancamento == TipoLancamento.RECEITA)
+            .Where(l => l.UsuarioInclusaoId == usuarioId)
+            .Where(l => l.StatusLancamento == StatusLancamento.EFETIVADO)
+            .SumAsync(l => l.Valor);
+    }
+
+    private async Task<decimal> ObterTotalDespesas(int usuarioId)
+    {
+        return await _repository.Query()
+            .Where(l => l.TipoLancamento == TipoLancamento.DESPESA)
+            .Where(l => l.UsuarioInclusaoId == usuarioId)
+            .Where(l => l.StatusLancamento == StatusLancamento.EFETIVADO)
+            .SumAsync(l => l.Valor);
+    }
 }

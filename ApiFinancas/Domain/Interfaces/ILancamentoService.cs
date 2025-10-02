@@ -13,4 +13,5 @@ public interface ILancamentoService
     Task<LancamentoDto> ObterLancamentoPorIdAsync(int id);
     Task<IEnumerable<LancamentoDto>> ObterLancamentosPorPeriodoAsync(int mesInicial, int anoInicial, int mesFinal, int anoFinal, int usuarioId);
     Task<IEnumerable<LancamentoDto>> ObterLancamentosPorFiltroAsync(string? descricao, int mes, int ano, TipoLancamento tipoLancamento, int usuarioId);
+    Task<decimal> ObterSaldoPorUsuario(int usuarioId);
 }

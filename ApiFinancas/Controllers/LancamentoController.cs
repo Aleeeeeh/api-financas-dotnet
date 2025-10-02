@@ -134,4 +134,17 @@ public class LancamentoController(ILancamentoService service) : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorDto(ex));
         }
     }
+
+    [HttpGet("saldo-por-usuario")]
+    public async Task<IActionResult> ObterSaldoPorUsuario([FromQuery] int usuarioId)
+    {
+        try
+        {
+            return Ok(await _service.ObterSaldoPorUsuario(usuarioId));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorDto(ex));
+        }
+    }
 }

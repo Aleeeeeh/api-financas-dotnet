@@ -8,6 +8,8 @@ public class UsuarioContext : IEntityTypeConfiguration<Usuario>
 {
     public void Configure(EntityTypeBuilder<Usuario> builder)
     {
+        builder.HasQueryFilter(l => !l.EstaExcluido);
+
         builder.Property(u => u.NomeAcesso)
             .HasMaxLength(50)
             .IsRequired();
