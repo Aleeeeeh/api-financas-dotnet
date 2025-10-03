@@ -100,7 +100,6 @@ public class LancamentoService(RepositoryBase<Lancamento> repository) : ILancame
     {
         PeriodoDataEhValido(mesInicial, anoInicial, mesFinal, anoFinal);
 
-
         List<Lancamento> listagemLancamentos = await _repository.Query()
             .Where(l => l.UsuarioInclusaoId == usuarioId)
             .Where(l => (int)l.Mes >= mesInicial && (int)l.Mes <= mesFinal)
